@@ -1,5 +1,5 @@
 <script>
-  import UsernameInput from '$lib/usernameInput.svelte';
+  import UsernameInput from '$lib/UsernameInput.svelte';
 </script>
 
 <h1>Stacker Stats</h1>

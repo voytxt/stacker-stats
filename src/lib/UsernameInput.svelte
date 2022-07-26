@@ -12,3 +12,9 @@
 </script>
 
 <input on:keydown={handleKeydown} bind:value={username} type="text" placeholder="Enter TETR.IO or Jstris username" size="30" />
+
+<style>
+  input {
+    font-family: inherit;
+  }
+</style>

@@ -2,8 +2,8 @@
   export let username;
   export let tetrio;
 
-  const sprint = tetrio?.records?.['40l']?.record?.endcontext?.finalTime;
-  const blitz = tetrio?.records?.blitz?.record?.endcontext?.score;
+  $: sprint = tetrio?.records?.['40l']?.record?.endcontext?.finalTime;
+  $: blitz = tetrio?.records?.blitz?.record?.endcontext?.score;
 </script>
 
 <!-- svelte-ignore a11y-img-redundant-alt -->

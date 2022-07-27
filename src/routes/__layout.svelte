@@ -20,7 +20,7 @@
 <style>
   @font-face {
     font-family: 'Whitney';
-    src: url('whitneymedium.otf');
+    src: url('/whitneymedium.otf');
   }
 
   :global(body) {

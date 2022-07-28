@@ -13,7 +13,8 @@
 <footer>
   <small>
     &copy; {new Date().getFullYear()} Vojta | <a href="https://github.com/vojta-dev/stacker-stats">GitHub</a> | Colors from
-    <a href="https://tailwindcss.com/docs/customizing-colors#color-palette-reference">Tailwind</a>
+    <a href="https://tailwindcss.com/docs/customizing-colors#color-palette-reference">Tailwind</a> | Icons from
+    <a href="https://heroicons.com/">Heroicons</a>
   </small>
 </footer>
 

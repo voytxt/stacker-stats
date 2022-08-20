@@ -1,19 +1,15 @@
-<script context="module">
-  export async function load({ params: { usernames }, fetch }) {
-    const response = await fetch('/api/' + usernames);
-    const data = await response.json();
-
-    return {
-      props: { users: data },
-    };
-  }
-</script>
-
 <script>
+  // throw new Error('@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)');
+  // Suggestion (check code before using, and possibly convert to data.X access later):
+  // /** @type {import('./$types').PageData} */
+  // export let data;
+  // $: ({ users } = data);
+
   import { goto } from '$app/navigation';
   import UsernameInput from '$lib/UsernameInput.svelte';
 
-  export let users;
+  export let data;
+  $: ({ users } = data);
 
   async function addUsers(event) {
     const usernames = event.detail.join('/');

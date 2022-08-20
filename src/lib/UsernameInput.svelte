@@ -1,27 +1,21 @@
 <script>
-  import { goto } from '$app/navigation';
+  import { createEventDispatcher } from 'svelte';
 
-  export let prefix = '';
+  const dispatch = createEventDispatcher();
 
-  let username = '';
-  let navigating = false;
+  let input = '';
+  $: usernames = input.split(' ');
 
   function handleKeydown(event) {
     if (event.key === 'Enter') {
-      goto(`/u/${prefix + username.replaceAll(' ', '/')}`).then(() => {
-        navigating = false;
-        username = '';
-      });
-
-      navigating = true;
+      dispatch('submit', usernames);
+      input = '';
     }
   }
 </script>
 
 <div>
-  <input on:keydown={handleKeydown} bind:value={username} type="text" placeholder="Enter TETR.IO or Jstris usernames" size="30" />
-
-  {#if navigating} <div>Loading...</div> {/if}
+  <input on:keydown={handleKeydown} bind:value={input} type="text" placeholder="Enter TETR.IO or Jstris usernames" size="30" />
 </div>
 
 <style>

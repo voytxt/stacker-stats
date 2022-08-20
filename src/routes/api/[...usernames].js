@@ -14,9 +14,5 @@ export async function GET({ params: { usernames } }) {
     });
   }
 
-  return {
-    body: {
-      data: body,
-    },
-  };
+  return { body };
 }

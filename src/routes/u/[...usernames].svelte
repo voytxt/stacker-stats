@@ -1,16 +1,35 @@
+<script context="module">
+  export async function load({ params: { usernames }, fetch }) {
+    const response = await fetch('/api/' + usernames);
+    const data = await response.json();
+
+    return {
+      props: { users: data },
+    };
+  }
+</script>
+
 <script>
   import { goto } from '$app/navigation';
   import UsernameInput from '$lib/UsernameInput.svelte';
 
-  export let data;
+  export let users;
+
+  async function addUsers(event) {
+    const usernames = event.detail.join('/');
+    const response = await fetch('/api/' + usernames);
+    const data = await response.json();
+
+    users = [...users, ...data];
+  }
 
   function removeUser(username) {
     // data = data.filter((user) => user.username !== username);
     console.log('removing', username);
-    console.log(data.filter((user) => user.username !== username).map((user) => user.username));
+    console.log(users.filter((user) => user.username !== username).map((user) => user.username));
     goto(
       '/u/' +
-        data
+        users
           .filter((user) => user.username !== username)
           .map((user) => user.username)
           .join('/') +
@@ -20,7 +39,7 @@
 </script>
 
 <svelte:head>
-  <title>Stacker Stats: {data.map((user) => user.username.toUpperCase()).join(' vs ')}</title>
+  <title>Stacker Stats: {users.map((user) => user.username.toUpperCase()).join(' vs ')}</title>
 </svelte:head>
 
 <main>
@@ -29,7 +48,7 @@
     <div>Blitz</div>
   </article>
 
-  {#each data as user}
+  {#each users as user}
     {@const sprint = user.tetrio?.records?.['40l']?.record?.endcontext?.finalTime}
     {@const blitz = user.tetrio?.records?.blitz?.record?.endcontext?.score}
     <article>
@@ -64,7 +83,7 @@
         />
       </svg>
     </div>
-    <UsernameInput prefix={data.map((user) => user.username).join('/') + '/'} />
+    <UsernameInput on:submit={addUsers} />
   </article>
 </main>
 

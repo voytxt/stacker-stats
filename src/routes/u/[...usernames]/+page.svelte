@@ -1,13 +1,9 @@
 <script>
-  // throw new Error('@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)');
-  // Suggestion (check code before using, and possibly convert to data.X access later):
-  // /** @type {import('./$types').PageData} */
-  // export let data;
-  // $: ({ users } = data);
-
   import { goto } from '$app/navigation';
   import UsernameInput from '$lib/UsernameInput.svelte';
+  import { userStore } from '$lib/stores.js';
 
+  console.log($userStore);
   export let data;
   $: ({ users } = data);
 
@@ -28,8 +24,7 @@
         users
           .filter((user) => user.username !== username)
           .map((user) => user.username)
-          .join('/') +
-        '/'
+          .join('/')
     );
   }
 </script>

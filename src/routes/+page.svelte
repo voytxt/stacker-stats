@@ -12,7 +12,12 @@
     }}
   >
     <!-- svelte-ignore a11y_autofocus -->
-    <input bind:value={usernames} placeholder="Enter TETR.IO usernames" autofocus />
+    <input
+      bind:value={usernames}
+      placeholder="Enter TETR.IO usernames"
+      autofocus
+      autocomplete="off"
+    />
   </form>
 </main>
 

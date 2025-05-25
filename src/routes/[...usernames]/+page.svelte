@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { data } = $props();
+  const { data } = $props();
 
   const users = data.users.filter((u) => u.status === 'fulfilled').map((u) => u.value);
 
